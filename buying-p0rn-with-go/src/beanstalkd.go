@@ -1,0 +1,13 @@
+beanstalkd.On("card_add", func(c *beanrpc.Context) {
+
+...
+...
+
+})
+
+beanstalkd.On("transaction_auth", func(c *beanrpc.Context) {
+
+...
+...
+
+})

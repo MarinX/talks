@@ -1,0 +1,112 @@
+Buying p0rn with Go
+Building payment service
+15:04 18 Nov 2016
+
+Marin Bašić
+CEO, MARIN-BASIC d.o.o.
+marin.basic02@gmail.com
+https://marin-basic.com/
+@marin02basic
+
+
+* Adult Industry
+.html html/keywords.html
+
+* Revenviews
+
+Revenviews concept
+
+- Glue between producer - publisher
+- Video uploading, processing, tagging etc..
+- Dynamic generated tube
+- *Payments* (producer and publisher)
+- Etc..
+
+*Charge* *customer,* *payout* *producer* *and* *publisher*
+
+* Starting with payment
+What do you expect ?
+
+- ~8500 request per minute (141 per sec) / per tube
+- Backend process in Go
+- AWS database
+- Fraud detection
+- Chargebacks
+
+
+* Starting with payment
+
+What do you need ?
+
+- Payment Processor --> *Securion*
+
+.code src/processors.go
+
+* BIN lookup
+
+*What* *is* *BIN?*
+
+.image img/bin.png
+
+- Also good for fraud detection
+
+* Crypt everything
+
+.code src/key.go
+
+* Crypt example data
+*id*: 96
+
+*token*: card_jC936gGE0s52P4UYJ0W63qF6TAC
+
+*rv_customer_id*: 114a5a1f8224ec5f-1
+
+*number*: YAHeEc+qqTn0xBw55EzuH8Ty5F23y6eD:
+
+*rv_notified*: 1
+
+*created_at*: 2016-07-08 10:16:28
+
+*etc...*
+
+* Setting up server
+
+Exposing REST
+
+.code src/handler.go
+
+* Balancing process
+
+Beanstalkd
+
+- Beanstalk is a simple, fast work queue
+- Facebook uses Beanstalkd
+- Job == Tube
+
+.code src/beanstalkd.go
+
+* The result ?
+
+.image img/htop.png
+
+- Less memory / CPU
+
+- None blocking tasks
+
+- *Money* *saving*
+
+I love you PHP but...
+
+.image img/htop_php.png
+
+* Business logic
+
+- *None*
+
+- Keep it simple and stupid
+
+- Bonus money, payouts, other stuff -> dont put it here
+
+* Business logic
+
+.image img/logic.png
