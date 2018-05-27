@@ -1,0 +1,142 @@
+Image Recognition SaaS
+using tensorflow
+18:00 22 Mar 2018
+
+
+Marin Basic
+CEO, MARIN-BASIC d.o.o.
+marin@marin-basic.com
+https://marin-basic.com
+@marin02basic
+
+
+* Agenda
+
+*What* *we* *will* *cover*
+
+- What is TensorFlow ?
+- Installing TensorFlow
+- Integrating into go
+- Image Recognition 
+- Example App
+
+* Agenda
+
+*What* *we* *will* *not* *cover*
+
+- Details about how ML works
+- Building ML models
+
+you can read more details about it on official tensorflow website [[https://www.tensorflow.org/][tensorflow.org]]
+
+* TensorFlow
+
+- Machine Learning framework
+- Open Source
+- Develop by Google
+
+*Supported* *languages*
+
+- C
+- Python
+- Java
+- Go
+
+*Who* *is* *using* *TensorFlow* *?*
+
+Airbnb, AMD, Nvidia, Uber, Google, Dropbox, Ebay, Snapchat, Twitter, etc...
+
+* Installing TensorFlow
+
+.code -edit install_tenserflow.sh
+
+* Testing installation
+
+.code -edit -numbers hello_tf.go
+
+* Image Recognition
+
+What we need ? 
+
+- Prebuilt trained model (tensorflow_inception_graph.pb : Imagenet classification)
+- Labels (imagenet_comp_graph_label_strings.txt)
+
+*Labels*
+red wolf, Old English sheepdog, jaguar, otterhound, bloodhound, Airedale, hyena...
+
+* Image Recognition
+
+.code load_model.go
+
+* Image Recongnition
+
+Normal image ( we need to prepare for IR )
+.image example_image.jpg _ 350
+
+* Image Recognition
+
+Cleaning image
+
+.code -edit -numbers clean_image.go
+
+* Image Recognition
+
+Results
+
+.code clean_image_results.txt
+
+* Image Recognition
+
+Run new session
+
+.code new_session_image.go
+
+* Image Recognition
+
+Our results: output[0].Value().([][]float32)[0]
+
+- Array index is the same as index for label file
+- Array value is a probabilty
+- Use sort.Sort to sort by probability and get N results
+
+
+
+* Image Recognition
+
+Funny results
+
+[
+    {assault rifle 0.15369457} 
+    {Dutch oven 0.14221543} 
+    {military uniform 0.10286692} 
+    {rifle 0.096560284} 
+    {chain saw 0.060261577}
+]
+
+
+- Model (~53mb)
+- Less object in image
+
+* API 
+
+Integrating into REST API
+
+- Create basic handler
+- http.ListenAndServe
+- Get query param eg ?url
+- Image buffer
+- Try to normalize image
+- Run tensorflow session
+
+* Example App
+
+.link https://github.com/MarinX/chrome-image-recognition Github
+.link https://chrome.google.com/webstore/detail/image-recognition/mpkjidflidoholnennmokpefkkcfcgaa Chrome Web Store
+.link https://marin-basic.com/status/api Open API
+
+In development
+
+.image mr_robot_2.jpg _ 600
+
+
+Now let's have some fun with chrome web app :)
