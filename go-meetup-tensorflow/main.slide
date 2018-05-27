@@ -48,7 +48,7 @@ Airbnb, AMD, Nvidia, Uber, Google, Dropbox, Ebay, Snapchat, Twitter, etc...
 
 * Installing TensorFlow
 
-.code -edit install_tenserflow.sh
+.code -edit install_tensorflow.sh
 
 * Testing installation
 
